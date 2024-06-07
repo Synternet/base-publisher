@@ -297,4 +297,3 @@ func (c *Ipc) processTraceCallDetails(txHashes []string) {
 		c.TxTraceCalls <- *results[i]
 	}
 }
-
