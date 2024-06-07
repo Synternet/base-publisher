@@ -50,5 +50,5 @@ docker build -t base-publisher -f docker/Dockerfile .
 ### Prebuilt image
 
 ```
-docker run --rm --env-file=.env ghcr.io/synternet/base-publisher:latest
+docker run --rm --env-file=.env -v /tmp/base.ipc:/tmp/base.ipc ghcr.io/synternet/base-publisher:latest
 ```

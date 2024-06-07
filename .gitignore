@@ -1,3 +1,4 @@
+.env
 /base-publisher
 /nats.creds
 /start.sh
