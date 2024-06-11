@@ -205,6 +205,8 @@ func (c *Ipc) MonitorPendingTransactions() {
 
 	for {
 		select {
+		case err := <-sub.Err():
+			panic(fmt.Errorf("newPendingTransactions subscription error: %w", err))
 		// Code block is executed when a new tx hash is piped to the channel
 		case transactionHash := <-newTxsChannel:
 			// Check duplication cache for tx hash and skip if already processed
@@ -284,7 +286,7 @@ func (c *Ipc) processTraceCallDetails(txHashes []string) {
 	// Send the batched requests
 	err := c.RpcClient.BatchCallContext(c.ctx, batch)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal(fmt.Errorf("error while calling BatchCallContext: %w", err))
 	}
 
 	// Process the responses
